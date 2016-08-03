@@ -1,0 +1,91 @@
+body {
+	padding: 3%;
+	background-color: #C6C6C6;
+	height: 100%;
+	color: #FF7C00;
+	font-size: large;
+}
+
+html {
+	height: 100%;
+}
+
+.buttons {
+
+	width: 60%;
+}
+
+#buttons {
+	margin-top: 15%;
+	width: 100%;
+}
+
+#left {
+	width: 75%;
+	height: 90%;
+}
+#right{
+	width: 25%;
+	display: inline-block;
+	vertical-align: middle;
+	height: 90%;
+	padding-left: 8%;
+	padding-top: 10%;
+}
+#right_content{
+	width: 100%;
+	display: inline-block;
+	vertical-align: middle;
+	height: 90%;
+}
+
+#error_alert{
+	color: blue;
+	font-weight: bold;
+	font-size: large;
+	margin-top: 5%;
+}
+#textarea {
+	height: 80%;
+	color: #FF7C00;
+}
+.form-group {
+	width: 100% !important;
+	height: 100% !important;
+}
+
+.container {
+	height: 95%;
+	width: 100%;
+}
+
+#donate {
+	height: 5%;
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+}
+#donate_div {
+	display: block;
+	margin: auto;
+	height: 100%;
+	width: 10%;
+
+}
+
+#donate_form {
+	vertical-align: middle;
+	padding-top: 5%;
+
+}
+
+#github_svg {
+	height: 110%;
+	margin-right: 5%;
+}
+
+
+.btn{
+	background-color: #FF7C00!important;
+	border-color: #FF7C00!important;
+}
