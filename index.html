@@ -58,7 +58,16 @@ problems your JS code could be affected by.</p>
 <p>Call JSandBox on the code you want to check.</p>
 
 <div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> code <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>alert("hello world")<span class="pl-pds">'</span></span>;
-<span class="pl-smi">code</span>.<span class="pl-en">JSandBox</span>();</pre></div>
+<span class="pl-c">//with default settings</span>
+<span class="pl-smi">code</span>.<span class="pl-en">JSandBox</span>();
+<span class="pl-c">//or with custom settings</span>
+<span class="pl-smi">code</span>.<span class="pl-en">JSandBox</span>({
+        <span class="pl-s"><span class="pl-pds">'</span>check_functions<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-c1">false</span>,
+        <span class="pl-s"><span class="pl-pds">'</span>worker<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>js/JSandBox-worker.js<span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>functions<span class="pl-pds">'</span></span><span class="pl-k">:</span> [<span class="pl-s"><span class="pl-pds">'</span>alert<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>eval<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>Function<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>myFunc<span class="pl-pds">'</span></span>],
+        <span class="pl-s"><span class="pl-pds">'</span>callback<span class="pl-pds">'</span></span><span class="pl-k">:</span> myCallback
+    });
+</pre></div>
 
 <p>By default, JSandBox have these options enabled:</p>
 
