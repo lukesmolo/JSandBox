@@ -33,7 +33,16 @@ You have to include [JQuery](https://jquery.com/) too.
 Call JSandBox on the code you want to check.
 ```javascript
 var code = 'alert("hello world")';
+//with default settings
 code.JSandBox();
+//or with custom settings
+code.JSandBox({
+		'check_functions': false,
+		'worker': 'js/JSandBox-worker.js',
+		'functions': ['alert', 'eval', 'Function', 'myFunc'],
+		'callback': myCallback
+	});
+
 ```
 
 By default, JSandBox have these options enabled:
