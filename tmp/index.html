@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Jsandbox by lukesmolo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Jsandbox</h1>
+      <h2 class="project-tagline">An efficient and safe sandbox for JavaScript</h2>
+      <a href="https://github.com/lukesmolo/JSandBox" class="btn">View on GitHub</a>
+      <a href="https://github.com/lukesmolo/JSandBox/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/lukesmolo/JSandBox/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="jsandbox-an-efficient-and-safe-sandbox-for-javascript" class="anchor" href="#jsandbox-an-efficient-and-safe-sandbox-for-javascript" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>JSandBox: an efficient and safe sandbox for JavaScript</h1>
+
+<blockquote>
+<p>JSandBox is an efficient and safe sandbox for JavaScript, where some JS code is
+executed in a safe environment. Actually, JSandBox is able to detect several
+problems your JS code could be affected by.</p>
+</blockquote>
+
+<p><a href="https://lukesmolo.github.io/JSandBox">JSandBox</a></p>
+
+<h2>
+<a id="how-does-it-work" class="anchor" href="#how-does-it-work" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How does it work?</h2>
+
+<p>First, your JS code is parsed for finding dangerous/not desirable functions, like <strong>eval</strong>,
+    <strong>alert</strong>,  <strong>Function()</strong> or a custom one. Then, your code is
+    executed on a local web worker, so in a safe environment, in order to find some syntax errors, or
+    <strong>infinite loops</strong>.
+    If no problems are detected, you are able to safely execute your JS code.
+    <br>
+    You can try it <a href="/demo/index.html">here</a>.</p>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>Clone the repository:</p>
+
+<pre><code>$ git clone git@github.com:lukesmolo/JSandBox.git
+</code></pre>
+
+<p>Include JSandBox in your page:</p>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text/javascript<span class="pl-pds">"</span></span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>JSandBox.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</pre></div>
+
+<p>You have to include <a href="https://jquery.com/">JQuery</a> too.</p>
+
+<p>Call JSandBox on the code you want to check.</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> code <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>alert("hello world")<span class="pl-pds">'</span></span>;
+<span class="pl-smi">code</span>.<span class="pl-en">JSandBox</span>();</pre></div>
+
+<p>By default, JSandBox have these options enabled:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> settings <span class="pl-k">=</span> {
+        <span class="pl-s"><span class="pl-pds">'</span>check_functions<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-c1">true</span>,
+        <span class="pl-s"><span class="pl-pds">'</span>check_syntax<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-c1">true</span>,
+        <span class="pl-s"><span class="pl-pds">'</span>check_loops<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-c1">true</span>,
+        <span class="pl-s"><span class="pl-pds">'</span>functions<span class="pl-pds">'</span></span><span class="pl-k">:</span> [<span class="pl-s"><span class="pl-pds">'</span>alert<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>eval<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>Function<span class="pl-pds">'</span></span>],
+        <span class="pl-s"><span class="pl-pds">'</span>worker<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>JSandBox-worker.js<span class="pl-pds">'</span></span>,
+        <span class="pl-s"><span class="pl-pds">'</span>timeout<span class="pl-pds">'</span></span> <span class="pl-k">:</span> <span class="pl-c1">2000</span>,
+        <span class="pl-s"><span class="pl-pds">'</span>callback<span class="pl-pds">'</span></span> <span class="pl-k">:</span> <span class="pl-c1">null</span>
+};</pre></div>
+
+<h5>
+<a id="check_functions-check_syntax-check_loops" class="anchor" href="#check_functions-check_syntax-check_loops" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><strong>check_functions</strong>, <strong>check_syntax</strong>, <strong>check_loops</strong>
+</h5>
+
+<p>specify which features are enabled. You can disable what you want, but please, take into account that
+<em>check_loops</em> requires <em>check_syntax</em> too. Also remember that without
+<em>check_loops</em> enabled, your worker could loop forever.</p>
+
+<h5>
+<a id="functions" class="anchor" href="#functions" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>functions</h5>
+
+<p>specify which functions are not allowed. For example:</p>
+
+<div class="highlight highlight-source-js"><pre>[<span class="pl-s"><span class="pl-pds">'</span>alert<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>eval<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>Function<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>myFunc<span class="pl-pds">'</span></span>]
+</pre></div>
+
+<h5>
+<a id="worker" class="anchor" href="#worker" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>worker</h5>
+
+<p>specify the path of the web worker. According to <a href="https://www.w3.org/TR/workers">http://www.w3.org/TR/workers/</a>:</p>
+
+<blockquote>
+<p>When the Worker(scriptURL) constructor is invoked, the user agent must run the following steps:
+<br>
+<strong>1)</strong> Resolve the scriptURL argument relative to the entry script's base URL, when the method is invoked.</p>
+</blockquote>
+
+<h5>
+<a id="timeout" class="anchor" href="#timeout" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>timeout</h5>
+
+<p>specify the timeout after which worker will be stopped.</p>
+
+<h5>
+<a id="callback" class="anchor" href="#callback" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>callback</h5>
+
+<p>specify a callback for returning your JS code status. By default, there is a
+simple alert. A callback has to be defined in this way:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">function</span> <span class="pl-en">myCallback</span>(<span class="pl-smi">msg</span>, <span class="pl-smi">error</span>)</pre></div>
+
+<p><em>msg</em> is a string containing the description of the returned status, <em>error</em> is a
+flag set when there is a problem.</p>
+
+<h2>
+<a id="demo" class="anchor" href="#demo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Demo</h2>
+
+<p>You can find a demo <a href="/demo/index.html">here</a>.</p>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
+
+<p>JSandBox is released under the MIT License.</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/lukesmolo/JSandBox">Jsandbox</a> is maintained by <a href="https://github.com/lukesmolo">lukesmolo</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
